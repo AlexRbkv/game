@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Собери картинку</title>
+	<link rel="stylesheet" href="css.css">
+    <script type="text/javascript" src="jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+    <form name="" method="post" action="#" enctype="multipart/form-data" class="feedback-form-1">
+        <fieldset>
+
+            <div class="input-file-row-1">
+
+                <div class="upload-file-container">
+                    <img id="MyImage" src="#" alt>
+                    <div class="upload-file-container-text">
+                        <span>Загрузить<br />Фото</span>
+                        <input type="file" name="pic[]" class="photo" id="imgInput" >
+                    </div>
+                </div>
+
+            </div>
+        </fieldset>
+    </form>
+    <div id="rowcol">
+        Введите количество строк
+    <input type="text" id="row" name = "row">
+        Введите количество столбцов
+    <input type="text" id="col" name = "col">
+    </div>
+
+    <div class="imgParts">
+        <img class="input-image" src="3.jpg"/>
+    </div>
+    <div class="result"></div>
+
+
+    <span id="Timer"></span>
+</body>
+</html>
