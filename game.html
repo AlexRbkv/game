@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>       
+    <title>Пятнашки</title>     
+    <meta charset="utf-8"> 
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="js.js"></script>
+    <link rel="stylesheet" href="css.css">
+       
+
+</head> 
+
+<body bgcolor="#708090">
+    <center>
+        <div id="number">
+            <p>Выберите количество ячеек:</p>
+            <p class="lineb">(например: 4 на 4)</p>
+        </div>      
+
+    <input type="text" class="form-control" id="name" value="">
+    <button class="btn btn-default" onclick="answ()">Отправить</button> 
+
+    <div class="imgParts">                    
+        <form name="" method="post" action="#" enctype="multipart/form-data" class="feedback-form-1">
+            <fieldset>
+                                    
+                <div class="input-file-row-1">
+                
+                    <div class="upload-file-container">
+                        <img id="image" src="#" alt="" />						
+                        <div class="upload-file-container-text">
+                            <span>Add<br />photo</span>
+                            <input type="file" name="pic[]" class="photo" id="imgInput" />
+                        </div>
+                    </div>  
+                            
+    </div>
+    <div class="result">
+
+            
+    <button id="reset" type="button" style="display:none" onClick="stop();">Остановить игру</button>        
+    </center>
+   
+    <div id="sample_timer"></div>     
+    <div id="steps"></div>  
+    <div id="rating"></div>
+    
+    <center><button id="ok" type="button" style="display:none" onClick="ok();">Начать заново</button></center>  
+    <center id="m15"></center>
+
+    
+</body>
+</html>
