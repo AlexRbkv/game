@@ -1,3 +1,7 @@
+body{
+	background-color: #CEF6F5;
+}
+
 .input-file-row-1:after {
 	content: ".";
 	display: block;
@@ -92,6 +96,7 @@ html[xmlns] .input-file-row-1{
 
 .imgParts img
 {
+	display: none;
 	height: 100px;
 	width: 150px;
 }
@@ -99,4 +104,33 @@ html[xmlns] .input-file-row-1{
 .result
 {
 	margin: 0 auto;
+}
+#random
+{
+	border: 2px solid black;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+#random > div {
+
+	height:100%;
+	display: inline-block;
+
+
+}
+
+#Timer{
+	border: 2px solid #121152;
+	border-radius: 7px;
+	padding: 10px;
+	text-align: center;
+	color:#121152;
+	background-color: #3592F5;
+	font-size: large;
+	font-weight: bolder;
+	display: none;
+	max-width: 200px ;
+	margin: auto;
+	margin-top: 50px;
 }
