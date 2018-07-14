@@ -16,7 +16,6 @@ timer.start();*/
 $(document).ready(function () {
         $("#imgInput").change(function () {
             readURL(this);
-            Timer();
         });
 		console.log($('.result').find('.part'));
 });
@@ -31,11 +30,9 @@ function readURL(input) {
                 reader.onload = function (e) { //Обработчик для события load.Cрабатывает при каждом успешном завершении операции чтения.
 				
 					$('.input-image').attr('src', e.target.result);
-
 					//Cut($('.input-image'));
 					Cut(e.target.result);
                 };
-
                 reader.readAsDataURL(input.files[0]); //чтение содержимого
             }
         }
@@ -43,8 +40,9 @@ function readURL(input) {
        /** Разделение изображения на части*/
 function Cut(imageSrc) {
 		debugger;
-        var PARTS = 5;
-        var PARTS2 = 4;
+        var PARTS = $('#row').val();
+        var PARTS2 = $('#col').val();
+
         var imgParts = $('.imgParts img');
         imgParts.css('visibility', 'visible');
         var container = $('#random');
@@ -94,39 +92,39 @@ function Cut(imageSrc) {
             container.css('visibility', 'visible');
             container.fadeIn('fast');
         }
-        Random();
+        Random(partWidth, partHeight);
 }
 
 /** Перемешивание частей изображения*/
-function Random() {
+function Random(wid,hig) {
     $(function () {
         var parent = $("#random");
         var divs = parent.children();
         while (divs.length) {
             parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
         }
-
         /* Вариант через grydly
         $('#random').gridly({ //gridly 
             base: 30, // px
             gutter: 3, // px
             columns: 5
         });*/
-
         /** Drag and Drop*/
         $(function () {
             $('.part').draggable(
                 {
                     containment: "parent",
-                    grid: [320, 152] //вместо 320 и 150 надо вставить размеры .part
+                    grid: [wid+5, hig+5] //надо вставить размеры частей
                 });
         });
+
         /* Еще один вариант
 		$( function() {
             $( ".part" ).sortable();
             $( ".part" ).disableSelection();
         } );*/
     });
+    Timer();
 }
 
 
