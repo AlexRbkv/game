@@ -16,13 +16,13 @@ timer.start();*/
 $(document).ready(function () {
         $("#imgInput").change(function () {
             readURL(this);
+            Timer();
         });
-		Cut('3.jpg');
-		
 		console.log($('.result').find('.part'));
 });
 
 
+/** Картинка почему-то добавляется через раз*/
 function readURL(input) {
 
             if (input.files && input.files[0]) {
@@ -30,8 +30,9 @@ function readURL(input) {
 
                 reader.onload = function (e) { //Обработчик для события load.Cрабатывает при каждом успешном завершении операции чтения.
 				
-					//$('.input-image').attr('src', e.target.result);
-					
+					$('.input-image').attr('src', e.target.result);
+
+					//Cut($('.input-image'));
 					Cut(e.target.result);
                 };
 
@@ -39,23 +40,22 @@ function readURL(input) {
             }
         }
 
+       /** Разделение изображения на части*/
 function Cut(imageSrc) {
-    //$(function () {
 		debugger;
         var PARTS = 5;
         var PARTS2 = 4;
         var imgParts = $('.imgParts img');
-
         imgParts.css('visibility', 'visible');
-        var container = $('.result');
-        //var imageSrc = imgParts.attr('src');
-        if (container.attr('data-src') != imageSrc) {
-            $('.boxshadow .result').css('box-shadow', 'none');
+        var container = $('#random');
+       // var imageSrc = imgParts.attr('src');
+        if (container.attr('src') != imageSrc) {
+            $('.boxshadow #random').css('box-shadow', 'none');
             container.fadeOut('fast');
             container.css('visibility', 'hidden');
             container.show();
             container.html('');
-            container.attr('data-src', imageSrc);
+            container.attr('src', imageSrc);
             var parts = PARTS;
             var parts2 = PARTS2;
             var image = $('<img>');
@@ -94,28 +94,52 @@ function Cut(imageSrc) {
             container.css('visibility', 'visible');
             container.fadeIn('fast');
         }
-    //})
-};
+        Random();
+}
 
+/** Перемешивание частей изображения*/
+function Random() {
+    $(function () {
+        var parent = $("#random");
+        var divs = parent.children();
+        while (divs.length) {
+            parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+        }
 
-function myChange(n, m){
+        /* Вариант через grydly
+        $('#random').gridly({ //gridly 
+            base: 30, // px
+            gutter: 3, // px
+            columns: 5
+        });*/
 
-    //меняются местами значения на кнопках n и m
-    var f = document.myForm.elements;
-    //alert(f[0].value);
-    var f0 = f[n].value;
-    f[n].value = f[m].value;
-    f[m].value = f0;
+        /** Drag and Drop*/
+        $(function () {
+            $('.part').draggable(
+                {
+                    containment: "parent",
+                    grid: [320, 152] //вместо 320 и 150 надо вставить размеры .part
+                });
+        });
+        /* Еще один вариант
+		$( function() {
+            $( ".part" ).sortable();
+            $( ".part" ).disableSelection();
+        } );*/
+    });
 }
 
 
-let start;
-start = new Date;
+/** Секундомер, пока не привязан к результату*/
+function Timer() {
+    $('#Timer').css('display','block');
+    let start;
+    start = new Date;
 
-setInterval(function() {
-    $('#Timer').text((new Date - start) / 1000 + " Секунд");
-}, 1000);
-
+    setInterval(function () {
+        $('#Timer').text((new Date - start) / 1000 + " Секунд");
+    }, 1000);
+}
 //объявляем переменные
 /*
 var base = 60; 
